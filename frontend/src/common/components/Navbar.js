@@ -10,8 +10,8 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
-import { PAGES } from '../common/constants/navbar';
-import { NAME_SITE } from '../common/constants/common';
+import { PAGES } from '../constants/navbar';
+import { NAME_SITE } from '../constants/common';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
