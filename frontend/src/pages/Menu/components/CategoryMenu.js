@@ -1,5 +1,7 @@
+import { Grid } from '@mui/material';
 import React, { useEffect } from 'react';
 import useMenu from '../../../hooks/useMenu';
+import MenuCard from './MenuCard';
 
 export const CategoryMenu = ({ category }) => {
   const { menu, getMenu } = useMenu();
@@ -10,16 +12,14 @@ export const CategoryMenu = ({ category }) => {
     getMenu();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
-    <div>
+    <Grid container spacing={2}>
       {filteredMenu?.map(item => (
-        <div key={item._id}>
-          <h3>{item.name}</h3>
-          <p>{item.description}</p>
-          <p>{item.price}</p>
-          <p>{item.image}</p>
-        </div>
+        <Grid key={item._id} item xs={12} sm={6} md={4}>
+          <MenuCard item={item} />
+        </Grid>
       ))}
-    </div>
+    </Grid>
   );
 };
