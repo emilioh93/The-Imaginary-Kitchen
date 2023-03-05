@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
-import banner from '../../assets/Soba_Noodles_with_spicy_chocolate_sauce_and_grilled_squid.png';
-import { BANNER_TEXT } from '../constants/banner';
+import banner from '../../../assets/Soba_Noodles_with_spicy_chocolate_sauce_and_grilled_squid.png';
+import { BANNER_TEXT } from '../../../common/constants/homePage';
 
 const Banner = () => {
   return (

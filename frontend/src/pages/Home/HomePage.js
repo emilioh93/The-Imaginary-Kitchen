@@ -1,10 +1,12 @@
 import React from 'react';
-import Banner from '../../common/components/Banner';
+import Banner from './components/Banner';
+import Welcome from './components/Welcome';
 
 const HomePage = () => {
   return (
     <>
       <Banner />
+      <Welcome />
     </>
   );
 };
