@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Container, Typography } from '@mui/material';
 import { MENU } from '../../common/constants/menu';
 import useCategory from '../../hooks/useCategory';
+import { CategoryMenu } from './components/CategoryMenu';
 
 const Menu = () => {
   const { categories, getCategories } = useCategory();
@@ -24,6 +25,7 @@ const Menu = () => {
           <Typography variant='body1' align='center' gutterBottom>
             {category.description}
           </Typography>
+          <CategoryMenu category={category} />
         </div>
       ))}
     </Container>

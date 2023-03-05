@@ -6,7 +6,7 @@ const useCategory = () => {
   const getCategories = async () => {
     try {
       const response = await fetch(
-        process.env.REACT_APP_API_CATEGORY_URL + '/categories'
+        process.env.REACT_APP_API_URL + '/categories'
       );
       const jsonData = await response.json();
 
