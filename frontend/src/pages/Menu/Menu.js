@@ -5,7 +5,6 @@ import useCategory from '../../hooks/useCategory';
 
 const Menu = () => {
   const { categories, getCategories } = useCategory();
-  console.log('🚀 ~ categories:', categories);
 
   useEffect(() => {
     getCategories();
