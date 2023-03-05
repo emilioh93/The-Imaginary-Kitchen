@@ -1,0 +1,1 @@
+export const MENU = 'Our strange food menu';
