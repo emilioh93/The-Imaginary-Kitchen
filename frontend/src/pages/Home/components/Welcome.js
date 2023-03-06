@@ -5,19 +5,15 @@ import {
   Typography,
   Box,
   useMediaQuery,
-  Button,
 } from '@mui/material';
 import Carousel from 'react-material-ui-carousel';
 import {
-  GO_TO_MENU_BUTTON,
-  GO_TO_MENU_TEXT,
   WELCOME_DESCRIPTION_1,
   WELCOME_DESCRIPTION_2,
   WELCOME_TITLE,
 } from '../../../common/constants/homePage';
 import image1 from '../../../assets/image_of_a_restaurant.png';
 import image2 from '../../../assets/image_of_a_restaurant_2.png';
-import { Link } from 'react-router-dom';
 
 const items = [
   {
