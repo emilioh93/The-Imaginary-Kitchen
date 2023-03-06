@@ -80,18 +80,6 @@ const Welcome = () => {
           >
             {WELCOME_DESCRIPTION_2}
           </Typography>
-          <Typography variant='h4' align='center' marginTop='2rem'>
-            {GO_TO_MENU_TEXT}
-          </Typography>
-          <Button
-            component={Link}
-            to='/menus'
-            variant='contained'
-            size='large'
-            sx={{ marginTop: '2rem' }}
-          >
-            {GO_TO_MENU_BUTTON}
-          </Button>
         </Grid>
       </Grid>
     </Container>
