@@ -49,7 +49,7 @@ export default function Footer() {
               : theme.palette.grey[800],
         }}
       >
-        <Grid container spacing={4}>
+        <Grid container spacing={2}>
           <Grid item xs={12} sm={5}>
             <List>
               {RECOGNITIONS.map(recognition => (
@@ -95,9 +95,18 @@ export default function Footer() {
                 </Tooltip>
               ))}
             </List>
-            <List>
-              <Copyright />
-            </List>
+            <List></List>
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Copyright />
           </Grid>
         </Grid>
       </Box>
