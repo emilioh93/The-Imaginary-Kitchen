@@ -77,6 +77,7 @@ function Navbar() {
                 <MenuItem key={page.id} onClick={handleCloseNavMenu}
                   component={Link}
                   to={page.path}
+                  disabled={page.isDisabled}
                 >
                   <Typography textAlign='center'>{page.name}</Typography>
                 </MenuItem>
@@ -107,6 +108,7 @@ function Navbar() {
                 sx={{ my: 2, color: 'white', display: 'block' }}
                 component={Link}
                 to={page.path}
+                disabled={page.isDisabled}
               >
                 {page.name}
               </Button>
