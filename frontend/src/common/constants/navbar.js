@@ -1,4 +1,4 @@
-export const PAGES = [
+export const GUEST_PAGES = [
   {
     id: 1,
     name: 'Home',
@@ -30,3 +30,24 @@ export const PAGES = [
     isDisabled: true,
   },
 ];
+
+export const ADMIN_PAGES = [
+  {
+    id: 1,
+    name: 'Reservations',
+    path: '/admin-reservations',
+    isDisabled: false,
+  },
+  {
+    id: 2,
+    name: 'Categories',
+    path: '/admin-categories',
+    isDisabled: false,
+  },
+  {
+    id: 3,
+    name: 'Menus',
+    path: '/admin-menus',
+    isDisabled: false,
+  },
+]

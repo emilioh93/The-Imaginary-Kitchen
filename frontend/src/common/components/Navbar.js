@@ -9,12 +9,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import { PAGES } from '../constants/navbar';
+import { ADMIN_PAGES, GUEST_PAGES } from '../constants/navbar';
 import { NAME_SITE } from '../constants/common';
 import { Link } from 'react-router-dom';
 
-function Navbar() {
+function Navbar({ isAdmin }) {
   const [anchorElNav, setAnchorElNav] = useState(null);
+  const pages = isAdmin ? ADMIN_PAGES : GUEST_PAGES;
 
   const handleOpenNavMenu = event => {
     setAnchorElNav(event.currentTarget);
@@ -73,8 +74,10 @@ function Navbar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {PAGES.map(page => (
-                <MenuItem key={page.id} onClick={handleCloseNavMenu}
+              {pages.map(page => (
+                <MenuItem
+                  key={page.id}
+                  onClick={handleCloseNavMenu}
                   component={Link}
                   to={page.path}
                   disabled={page.isDisabled}
@@ -82,6 +85,19 @@ function Navbar() {
                   <Typography textAlign='center'>{page.name}</Typography>
                 </MenuItem>
               ))}
+              {isAdmin && (
+              <Button
+                sx={{ my: 2 }}
+                onClick={() => {
+                  localStorage.removeItem('token');
+                  window.location.reload();
+                }}
+                variant='contained'
+                color='error'
+              >
+                Logout
+              </Button>
+            )}
             </Menu>
           </Box>
           <Typography
@@ -100,8 +116,14 @@ function Navbar() {
           >
             {NAME_SITE}
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'right' }}>
-            {PAGES.map(page => (
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: 'none', md: 'flex' },
+              justifyContent: 'right',
+            }}
+          >
+            {pages.map(page => (
               <Button
                 key={page.id}
                 onClick={handleCloseNavMenu}
@@ -113,6 +135,19 @@ function Navbar() {
                 {page.name}
               </Button>
             ))}
+            {isAdmin && (
+              <Button
+                sx={{ my: 2 }}
+                onClick={() => {
+                  localStorage.removeItem('token');
+                  window.location.reload();
+                }}
+                variant='contained'
+                color='error'
+              >
+                Logout
+              </Button>
+            )}
           </Box>
         </Toolbar>
       </Container>
