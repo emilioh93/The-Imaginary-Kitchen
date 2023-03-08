@@ -1,7 +1,16 @@
 import React, { useState } from 'react';
 import { Box, Button, Container, TextField } from '@mui/material';
 import Title from '../../common/components/Title';
-import { DESCRIPTION_LABEL, DESCRIPTION_PLACEHOLDER, ERROR_DESCRIPTION_REQUIRED, ERROR_NAME_REQUIRED, NAME_LABEL, NAME_PLACEHOLDER, SAVE_BUTTON_TEXT } from '../../common/constants/addNewForm';
+import {
+  DESCRIPTION_LABEL,
+  DESCRIPTION_PLACEHOLDER,
+  ERROR_DESCRIPTION_REQUIRED,
+  ERROR_NAME_REQUIRED,
+  NAME_LABEL,
+  NAME_PLACEHOLDER,
+  SAVE_BUTTON_TEXT,
+} from '../../common/constants/addNewForm';
+import useCategory from '../../hooks/useCategory';
 
 const AddNewCategory = () => {
   const [form, setForm] = useState({
@@ -10,6 +19,8 @@ const AddNewCategory = () => {
   });
   const { name, description } = form;
   const [errors, setErrors] = useState({});
+  const { name: nameError, description: descriptionError } = errors;
+  const { addCategory } = useCategory();
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -21,6 +32,11 @@ const AddNewCategory = () => {
       tmpErrors.description = ERROR_DESCRIPTION_REQUIRED;
     }
     setErrors(tmpErrors);
+
+    if (Object.keys(tmpErrors).length === 0) {
+      addCategory(form);
+      setForm({ name: '', description: '' });
+    }
   };
 
   return (
@@ -45,8 +61,8 @@ const AddNewCategory = () => {
           value={name}
           onChange={e => setForm({ ...form, name: e.target.value })}
           type='text'
-          error={errors.name?.length > 0}
-          helperText={errors.name?.length > 0 && errors.name}
+          error={nameError?.length > 0}
+          helperText={nameError?.length > 0 && nameError}
         />
         <TextField
           required
@@ -58,8 +74,8 @@ const AddNewCategory = () => {
           value={description}
           onChange={e => setForm({ ...form, description: e.target.value })}
           type='text'
-          error={errors.description?.length > 0}
-          helperText={errors.description?.length > 0 && errors.description}
+          error={descriptionError?.length > 0}
+          helperText={descriptionError?.length > 0 && descriptionError}
         />
         <Button
           variant='contained'
