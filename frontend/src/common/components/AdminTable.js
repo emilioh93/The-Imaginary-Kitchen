@@ -19,6 +19,7 @@ export default function AdminTable({
   rows,
   columns,
   linkToAddNew,
+  linkToEdit,
   handleDelete,
 }) {
   return (
@@ -54,7 +55,10 @@ export default function AdminTable({
                   <TableCell key={index}>{item}</TableCell>
                 ))}
                 <TableCell>
-                  <IconButton aria-label='edit' color='info'>
+                  <IconButton aria-label='edit' color='info'
+                    component={Link}
+                    to={`${linkToEdit}/${row.id}`}
+                  >
                     <EditSharpIcon />
                   </IconButton>
                 </TableCell>

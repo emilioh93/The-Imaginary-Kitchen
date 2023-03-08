@@ -34,6 +34,7 @@ const AdminCategories = () => {
         columns={columns}
         rows={rows}
         linkToAddNew='/admin-categories/new'
+        linkToEdit='/admin-categories/edit'
         handleDelete={id => deleteCategory(id)}
       />
     </Container>
