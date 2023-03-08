@@ -5,7 +5,7 @@ import Title from '../../common/components/Title';
 import useCategory from '../../hooks/useCategory';
 
 const AdminCategories = () => {
-  const { categories, getCategories } = useCategory();
+  const { categories, getCategories, deleteCategory } = useCategory();
   const columns = [
     { id: 1, label: 'Name' },
     { id: 2, label: 'Description' },
@@ -34,6 +34,7 @@ const AdminCategories = () => {
         columns={columns}
         rows={rows}
         linkToAddNew='/admin-categories/new'
+        handleDelete={id => deleteCategory(id)}
       />
     </Container>
   );

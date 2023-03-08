@@ -35,10 +35,22 @@ const useCategory = () => {
     }
   };
 
+  const deleteCategory = async id => {
+    try {
+      await fetch(process.env.REACT_APP_API_URL + `/categories/${id}`, {
+        method: 'DELETE',
+      });
+      setCategories(categories.filter(category => category.id !== id));
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
   return {
     categories,
     getCategories,
     addCategory,
+    deleteCategory,
   };
 };
 

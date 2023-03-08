@@ -15,8 +15,12 @@ import {
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-export default function AdminTable({ rows, columns, linkToAddNew }) {
-  console.log('🚀 ~ rows:', rows);
+export default function AdminTable({
+  rows,
+  columns,
+  linkToAddNew,
+  handleDelete,
+}) {
   return (
     <>
       <Box display='flex' justifyContent='flex-end' marginBottom='1rem'>
@@ -55,7 +59,11 @@ export default function AdminTable({ rows, columns, linkToAddNew }) {
                   </IconButton>
                 </TableCell>
                 <TableCell>
-                  <IconButton aria-label='delete' color='error'>
+                  <IconButton
+                    aria-label='delete'
+                    color='error'
+                    onClick={() => handleDelete(row.id)}
+                  >
                     <DeleteSharpIcon />
                   </IconButton>
                 </TableCell>
