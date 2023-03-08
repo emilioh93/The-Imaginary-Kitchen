@@ -30,7 +30,11 @@ const AdminCategories = () => {
   return (
     <Container>
       <Title>Admin Categories</Title>
-      <AdminTable columns={columns} rows={rows} />
+      <AdminTable
+        columns={columns}
+        rows={rows}
+        linkToAddNew='/admin-categories/new'
+      />
     </Container>
   );
 };

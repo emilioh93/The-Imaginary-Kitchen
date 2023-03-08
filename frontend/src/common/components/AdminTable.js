@@ -13,13 +13,19 @@ import {
   Paper,
   IconButton,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 
-export default function AdminTable({ rows, columns }) {
+export default function AdminTable({ rows, columns, linkToAddNew }) {
   console.log('🚀 ~ rows:', rows);
   return (
     <>
       <Box display='flex' justifyContent='flex-end' marginBottom='1rem'>
-        <Button variant='contained' color='success'>
+        <Button
+          variant='contained'
+          color='success'
+          component={Link}
+          to={linkToAddNew}
+        >
           Add new
         </Button>
       </Box>
