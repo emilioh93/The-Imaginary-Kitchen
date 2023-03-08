@@ -53,7 +53,7 @@ export default function Footer() {
           <Grid item xs={12} sm={5}>
             <List>
               {RECOGNITIONS.map(recognition => (
-                <ListItem>
+                <ListItem key={recognition.id}>
                   <ListItemIcon>
                     <EmojiEventsIcon />
                   </ListItemIcon>
