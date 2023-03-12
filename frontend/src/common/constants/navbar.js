@@ -8,7 +8,7 @@ export const GUEST_PAGES = [
   {
     id: 2,
     name: 'Menu',
-    path: '/menus',
+    path: '/menu',
     isDisabled: false,
   },
   {
@@ -46,8 +46,8 @@ export const ADMIN_PAGES = [
   },
   {
     id: 3,
-    name: 'Menus',
-    path: '/admin-menus',
+    name: 'Menu',
+    path: '/admin-menu',
     isDisabled: false,
   },
 ]
