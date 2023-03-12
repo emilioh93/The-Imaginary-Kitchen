@@ -20,7 +20,7 @@ const useMenu = () => {
         method: 'DELETE',
       });
 
-      setMenu(menu.filter(menu => menu.menu_id !== id));
+      setMenu(menu.filter(item => item.menu_id !== id));
     } catch (err) {
       console.error(err.message);
     }
