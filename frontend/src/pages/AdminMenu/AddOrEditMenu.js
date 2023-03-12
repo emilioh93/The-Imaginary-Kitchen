@@ -1,4 +1,11 @@
-import { Button, Container, Grid, MenuItem, TextField } from '@mui/material';
+import {
+  Button,
+  Container,
+  Grid,
+  MenuItem,
+  TextField,
+  Typography,
+} from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import Title from '../../common/components/Title';
 import {
@@ -130,6 +137,8 @@ const AddOrEditMenu = () => {
             onChange={e => setForm({ ...form, description: e.target.value })}
             error={!!descriptionError}
             helperText={descriptionError}
+            multiline
+            rows={4}
           />
         </Grid>
         <Grid item xs={12}>
@@ -145,6 +154,12 @@ const AddOrEditMenu = () => {
             helperText={imageError}
           />
         </Grid>
+        {image && (
+          <Grid item xs={12}>
+            <Typography variant='h6'>Image preview</Typography>
+            <img src={image} alt={name} style={{ width: '400px' }} />
+          </Grid>
+        )}
         <Grid item xs={12}>
           <Button
             variant='contained'
