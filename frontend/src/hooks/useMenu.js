@@ -26,10 +26,26 @@ const useMenu = () => {
     }
   };
 
+  const addMenu = async newMenu => {
+    try {
+      const response = await fetch(process.env.REACT_APP_API_URL + '/menus', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newMenu),
+      });
+
+      const jsonData = await response.json();
+      setMenu([...menu, jsonData]);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
   return {
     menu,
     getMenu,
     deleteMenu,
+    addMenu,
   };
 };
 

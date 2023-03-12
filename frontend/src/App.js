@@ -5,6 +5,7 @@ import Navbar from './common/components/Navbar';
 import About from './pages/About/About';
 import AddOrEditCategory from './pages/AdminCategories/AddOrEditCategory';
 import AdminCategories from './pages/AdminCategories/AdminCategories';
+import AddOrEditMenu from './pages/AdminMenu/AddOrEditMenu';
 import AdminMenu from './pages/AdminMenu/AdminMenu';
 import HomePage from './pages/Home/HomePage';
 import Menu from './pages/Menu/Menu';
@@ -24,6 +25,7 @@ const App = () => {
         <Route path='/admin-categories/new' exact component={AddOrEditCategory} />
         <Route path='/admin-categories/edit/:id' exact component={AddOrEditCategory} />
         <Route path='/admin-menu' exact component={AdminMenu} />
+        <Route path='/admin-menu/new' exact component={AddOrEditMenu} />
       </Switch>
       <Footer />
     </BrowserRouter>

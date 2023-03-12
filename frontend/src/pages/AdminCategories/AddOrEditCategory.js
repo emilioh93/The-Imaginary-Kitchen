@@ -60,7 +60,6 @@ const AddNewCategory = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category]);
 
-  console.log('🚀 ~ category:', category);
   if (id && !category) {
     return <div>Loading...</div>;
   }
