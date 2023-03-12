@@ -15,6 +15,17 @@ import {
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 
+const CustomTableCell = ({ item }) => {
+  if (typeof item === 'string' && item.includes('http')) {
+    return (
+      <TableCell>
+        <img src={item} alt='menu item' width='100px' />
+      </TableCell>
+    );
+  }
+  return <TableCell>{item}</TableCell>;
+};
+
 export default function AdminTable({
   rows,
   columns,
@@ -52,10 +63,12 @@ export default function AdminTable({
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 {row.atributtes.map((item, index) => (
-                  <TableCell key={index}>{item}</TableCell>
+                  <CustomTableCell key={index} item={item} />
                 ))}
                 <TableCell>
-                  <IconButton aria-label='edit' color='info'
+                  <IconButton
+                    aria-label='edit'
+                    color='info'
                     component={Link}
                     to={`${linkToEdit}/${row.id}`}
                   >
