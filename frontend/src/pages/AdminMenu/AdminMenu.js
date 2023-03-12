@@ -5,7 +5,7 @@ import AdminTable from '../../common/components/AdminTable';
 import useMenu from '../../hooks/useMenu';
 
 const AdminMenu = () => {
-  const { menu, getMenu } = useMenu();
+  const { menu, getMenu, deleteMenu } = useMenu();
   const columns = [
     { id: 1, label: 'Name' },
     { id: 2, label: 'Description' },
@@ -44,7 +44,7 @@ const AdminMenu = () => {
         rows={rows}
         linkToAddNew='/admin-menu/new'
         linkToEdit='/admin-menu/edit'
-        // handleDelete={id => deleteCategory(id)}
+        handleDelete={id => deleteMenu(id)}
       />
     </Container>
   );

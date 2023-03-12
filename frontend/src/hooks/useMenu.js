@@ -14,9 +14,22 @@ const useMenu = () => {
     }
   };
 
+  const deleteMenu = async id => {
+    try {
+      await fetch(process.env.REACT_APP_API_URL + `/menus/${id}`, {
+        method: 'DELETE',
+      });
+
+      setMenu(menu.filter(menu => menu.menu_id !== id));
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
   return {
     menu,
     getMenu,
+    deleteMenu,
   };
 };
 
