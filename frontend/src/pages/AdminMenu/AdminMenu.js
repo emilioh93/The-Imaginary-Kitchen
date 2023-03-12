@@ -5,7 +5,7 @@ import AdminTable from '../../common/components/AdminTable';
 import useMenu from '../../hooks/useMenu';
 
 const AdminMenu = () => {
-  const { menu, getMenu, deleteMenu } = useMenu();
+  const { menus, getMenus, deleteMenu } = useMenu();
   const columns = [
     { id: 1, label: 'Name' },
     { id: 2, label: 'Description' },
@@ -15,7 +15,7 @@ const AdminMenu = () => {
   ];
   const createRows = () => {
     const tmpRows = [];
-    menu.forEach(item => {
+    menus.forEach(item => {
       tmpRows.push({
         id: item._id,
         atributtes: [
@@ -32,7 +32,7 @@ const AdminMenu = () => {
   const rows = createRows();
 
   useEffect(() => {
-    getMenu();
+    getMenus();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

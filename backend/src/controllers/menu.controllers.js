@@ -9,16 +9,12 @@ export const getMenus = async (req, res) => {
   }
 };
 
-export const getMenu = async (req, res, next) => {
+export const getMenu = async (req, res) => {
   try {
-    const menu = await Menu.findById(req.params.id);
-    if (menu == null) {
-      return res.status(404).json({ message: 'Cannot find menu' });
-    }
-    res.menu = menu;
-    next();
+    const menu = await Menu.findById(req.params.id).populate('category');
+    res.json(menu);
   } catch (err) {
-    return res.status(500).json({ message: err.message });
+    res.status(500).json({ message: err.message });
   }
 };
 

@@ -7,6 +7,7 @@ import {
   Typography,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Title from '../../common/components/Title';
 import {
   ERROR_CATEGORY_REQUIRED,
@@ -20,8 +21,9 @@ import useCategory from '../../hooks/useCategory';
 import useMenu from '../../hooks/useMenu';
 
 const AddOrEditMenu = () => {
+  const { id } = useParams();
   const { categories, getCategories } = useCategory();
-  const { addMenu } = useMenu();
+  const { addMenu, getMenuById, updateMenu, menu } = useMenu();
   const [form, setForm] = useState({
     name: '',
     price: '',
@@ -61,7 +63,11 @@ const AddOrEditMenu = () => {
     setErrors(tmpErrors);
 
     if (Object.keys(tmpErrors).length === 0) {
-      addMenu(form);
+      if (id) {
+        updateMenu(id, form);
+      } else {
+        addMenu(form);
+      }
       setForm({
         name: '',
         price: '',
@@ -74,12 +80,26 @@ const AddOrEditMenu = () => {
 
   useEffect(() => {
     getCategories();
+    if (id) {
+      getMenuById(id);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    setForm({
+      name: menu?.name,
+      price: menu?.price,
+      category: menu?.category?._id,
+      description: menu?.description,
+      image: menu?.image,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [menu]);
+
   return (
     <Container>
-      <Title>Add new menu</Title>
+      <Title>{id ? 'Edit Menu' : 'Add New Menu'}</Title>
       <Grid container spacing={2} component='form' onSubmit={handleSubmit}>
         <Grid item xs={12} sm={4}>
           <TextField
@@ -88,7 +108,7 @@ const AddOrEditMenu = () => {
             fullWidth
             label='Name'
             type={'text'}
-            value={name}
+            value={name || ''}
             onChange={e => setForm({ ...form, name: e.target.value })}
             error={!!nameError}
             helperText={nameError}
@@ -101,7 +121,7 @@ const AddOrEditMenu = () => {
             fullWidth
             label='Price'
             type={'number'}
-            value={price}
+            value={price || ''}
             onChange={e => setForm({ ...form, price: e.target.value })}
             error={!!priceError}
             helperText={priceError}
@@ -114,7 +134,7 @@ const AddOrEditMenu = () => {
             fullWidth
             label='Category'
             select
-            value={category}
+            value={category || ''}
             onChange={e => setForm({ ...form, category: e.target.value })}
             error={!!categoryError}
             helperText={categoryError}
@@ -133,7 +153,7 @@ const AddOrEditMenu = () => {
             fullWidth
             label='Description'
             type={'text'}
-            value={description}
+            value={description || ''}
             onChange={e => setForm({ ...form, description: e.target.value })}
             error={!!descriptionError}
             helperText={descriptionError}
@@ -148,7 +168,7 @@ const AddOrEditMenu = () => {
             fullWidth
             label='Image'
             type={'url'}
-            value={image}
+            value={image || ''}
             onChange={e => setForm({ ...form, image: e.target.value })}
             error={!!imageError}
             helperText={imageError}
@@ -167,7 +187,11 @@ const AddOrEditMenu = () => {
             type='submit'
             onClick={handleSubmit}
           >
-            {SAVE_BUTTON_TEXT}
+            {id ? (
+              <Typography variant='h6'>Update</Typography>
+            ) : (
+              <Typography variant='h6'>{SAVE_BUTTON_TEXT}</Typography>
+            )}
           </Button>
         </Grid>
       </Grid>

@@ -26,6 +26,7 @@ const App = () => {
         <Route path='/admin-categories/edit/:id' exact component={AddOrEditCategory} />
         <Route path='/admin-menu' exact component={AdminMenu} />
         <Route path='/admin-menu/new' exact component={AddOrEditMenu} />
+        <Route path='/admin-menu/edit/:id' exact component={AddOrEditMenu} />
       </Switch>
       <Footer />
     </BrowserRouter>

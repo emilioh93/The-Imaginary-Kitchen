@@ -1,14 +1,15 @@
 import { useState } from 'react';
 
 const useMenu = () => {
+  const [menus, setMenus] = useState([]);
   const [menu, setMenu] = useState([]);
 
-  const getMenu = async () => {
+  const getMenus = async () => {
     try {
       const response = await fetch(process.env.REACT_APP_API_URL + '/menus');
       const jsonData = await response.json();
 
-      setMenu(jsonData);
+      setMenus(jsonData);
     } catch (err) {
       console.error(err.message);
     }
@@ -20,7 +21,7 @@ const useMenu = () => {
         method: 'DELETE',
       });
 
-      setMenu(menu.filter(item => item.menu_id !== id));
+      setMenus(menu.filter(item => item.menu_id !== id));
     } catch (err) {
       console.error(err.message);
     }
@@ -35,7 +36,42 @@ const useMenu = () => {
       });
 
       const jsonData = await response.json();
-      setMenu([...menu, jsonData]);
+      setMenus([...menu, jsonData]);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  const updateMenu = async (id, updatedMenu) => {
+    try {
+      const response = await fetch(
+        process.env.REACT_APP_API_URL + `/menus/${id}`,
+        {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(updatedMenu),
+        }
+      );
+
+      const jsonData = await response.json();
+      setMenus(
+        menu.map(item =>
+          item.menu_id === updatedMenu.menu_id ? jsonData : item
+        )
+      );
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  const getMenuById = async id => {
+    try {
+      const response = await fetch(
+        process.env.REACT_APP_API_URL + `/menus/${id}`
+      );
+      const jsonData = await response.json();
+
+      setMenu(jsonData);
     } catch (err) {
       console.error(err.message);
     }
@@ -43,9 +79,12 @@ const useMenu = () => {
 
   return {
     menu,
-    getMenu,
+    menus,
+    getMenus,
     deleteMenu,
     addMenu,
+    updateMenu,
+    getMenuById,
   };
 };
 
