@@ -22,7 +22,7 @@ const AdminMenu = () => {
           item.name,
           item.description,
           item.price,
-          item.category.name,
+          item.category && item.category.name,
           item.image,
         ],
       });
