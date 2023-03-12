@@ -48,7 +48,7 @@ const AddOrEditMenu = () => {
     if (name.trim() === '') {
       tmpErrors.name = ERROR_NAME_REQUIRED;
     }
-    if (price.trim() === '') {
+    if (price === '') {
       tmpErrors.price = ERROR_PRICE_REQUIRED;
     }
     if (category.trim() === '') {
